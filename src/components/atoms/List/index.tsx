@@ -24,7 +24,6 @@ const List = ({ label, items }) => {
   const rotate=useDerivedValue(()=>{
       return interpolate(transition.value, [0,1],[0, 90])
   })
-  const colorInterpolate=interpolateColor(transition.value, [0,1], ['#5855DA','#22A12E'])
   const height = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -39,7 +38,7 @@ const List = ({ label, items }) => {
                 rotateZ:`${rotate.value}deg`,
               }
           ],
-          backgroundColor:colorInterpolate
+          backgroundColor:interpolateColor(transition.value, [0,1], ['#5855DA','#22A12E'])
       }
   })
   const animatedRef = useAnimatedRef<View>();
