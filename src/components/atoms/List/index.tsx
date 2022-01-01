@@ -1,20 +1,74 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
+import Animated, {
+    interpolate,
+    interpolateColor,
+    measure,
+    runOnUI,
+  useAnimatedRef,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import Chevron from '../../../assets/chevronW.png';
-import ListItem from '../ListItem';
+import ListItem, { LIST_ITEM_HEIGHT } from '../ListItem';
 
 const List = ({ label, items }) => {
+  const open = useSharedValue(false);
+  const transition = useDerivedValue(() => {
+    return open.value ? withSpring(1) : withTiming(0, { duration: 300 });
+  });
+
+  const rotate=useDerivedValue(()=>{
+      return interpolate(transition.value, [0,1],[0, 90])
+  })
+  const colorInterpolate=interpolateColor(transition.value, [0,1], ['#5855DA','#22A12E'])
+  const height = useSharedValue(0);
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      height: height.value * transition.value + 1,
+      opacity: transition.value === 0 ? 0 : 1,
+    };
+  });
+  const rotateStyle=useAnimatedStyle(()=>{
+      return{
+          transform:[
+              {
+                rotateZ:`${rotate.value}deg`,
+              }
+          ],
+          backgroundColor:colorInterpolate
+      }
+  })
+  const animatedRef = useAnimatedRef<View>();
+
+  const handlePress=()=>{
+      runOnUI(()=>{
+          'worklet';
+          height.value=LIST_ITEM_HEIGHT*items.length;
+      })();
+      open.value=!open.value;
+  }
+
   return (
-    <View>
-      <View style={style.container}>
+    <View >
+        <TouchableWithoutFeedback onPress={handlePress}>
+        <View style={style.container}>
         <Text>{label}</Text>
-        <View style={style.circle}>
+        <Animated.View style={[style.circle, rotateStyle]}>
           <Image style={style.image} source={Chevron} />
-        </View>
+        </Animated.View>
       </View>
-      {items.map(item=>(
-          <ListItem title={item.title} amount={item.amount}/>
-      ))}
+        </TouchableWithoutFeedback>
+      <Animated.View style={animatedStyle}>
+        <View ref={animatedRef}>
+          {items.map((item, index) => (
+            <ListItem title={item.title} key={index} amount={item.amount} />
+          ))}
+        </View>
+      </Animated.View>
     </View>
   );
 };

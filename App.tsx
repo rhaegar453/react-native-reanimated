@@ -14,6 +14,12 @@ const mockList=[
       { title: "Jacob Mullins", amount: "$3.45" },
       { title: "Jesus Lewis", amount: "$3.45" },
       { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
+
     ],
   },
   {
@@ -22,6 +28,11 @@ const mockList=[
       { title: "Nathaniel Fitzgerald", amount: "$3.45" },
       { title: "Lawrence Fullter Fitzgerald", amount: "$3.45" },
       { title: "Jacob Mullins", amount: "$3.45" },
+      { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
+      { title: "Johnny Marr", amount: "$2.56" },
     ],
   },
   {
@@ -38,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f4f4f6",
     padding: 16,
-    overflow:'scroll'
+    overflow:'visible'
   },
   title: {
     fontSize: 32,
@@ -53,7 +64,6 @@ const Accordion = () => {
       {mockList.map((item, index)=>(
         <List label={item.label} items={item.items}  key={index}/>
       ))}
-      <ListItem title={'Hello World'} amount={200} ></ListItem>
     </SafeAreaView>
   );
 };

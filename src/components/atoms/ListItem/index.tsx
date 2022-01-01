@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+export const LIST_ITEM_HEIGHT=45;
 
 const ListItem=({title, amount})=>{
     return(
@@ -26,7 +27,8 @@ const style=StyleSheet.create({
         display:'flex', 
         justifyContent:'space-between',
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        height:LIST_ITEM_HEIGHT,
     },
     amountContainer:{
         display:'flex',
