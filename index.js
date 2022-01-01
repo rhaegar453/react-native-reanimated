@@ -10,7 +10,7 @@ import 'react-native-gesture-handler'
 
 const RootComponent=()=>{
     return(
-        <GestureHandlerRootView>
+        <GestureHandlerRootView style={{flex:1}}>
             <App/>
         </GestureHandlerRootView>
     );
