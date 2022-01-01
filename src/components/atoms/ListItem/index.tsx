@@ -18,11 +18,10 @@ const style=StyleSheet.create({
         color:'white'
     },
     container:{
-        padding:10,
+        padding:5,
         backgroundColor:'#fefefe',
         borderColor:'#e8e8e8',
-        borderWidth:1, 
-        margin:5, 
+        borderTopWidth:1,
         borderRadius:5,
         display:'flex', 
         justifyContent:'space-between',

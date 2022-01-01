@@ -1,36 +1,37 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import List from "./src/components/atoms/List";
 import ListItem from "./src/components/atoms/ListItem";
 
-import List, { List as ListModel } from "./src/components/molecules/ListContainer";
 
-const list: ListModel = {
-  name: "Total Points",
-  items: [
-    { name: "Nathaniel Fitzgerald", points: "$3.45" },
-    { name: "Lawrence Fullter Fitzgerald", points: "$3.45" },
-    { name: "Jacob Mullins", points: "$3.45" },
-    { name: "Jesus Lewis", points: "$3.45" },
-    { name: "Johnny Marr", points: "$2.56" },
-  ],
-};
 
-const list2: ListModel = {
-  name: "Total Points",
-  items: [
-    { name: "Nathaniel Fitzgerald", points: "$3.45" },
-    { name: "Lawrence Fullter Fitzgerald", points: "$3.45" },
-    { name: "Jacob Mullins", points: "$3.45" },
-  ],
-};
-
-const list3: ListModel = {
-  name: "Total Points",
-  items: [
-    { name: "Nathaniel Fitzgerald", points: "$3.45" },
-    { name: "Lawrence Fullter Fitzgerald", points: "$3.45" },
-  ],
-};
+const mockList=[
+  {
+    label: "Total Points",
+    items: [
+      { title: "Nathaniel Fitzgerald", amount: "$3.45" },
+      { title: "Lawrence Fullter Fitzgerald", amount: "$3.45" },
+      { title: "Jacob Mullins", amount: "$3.45" },
+      { title: "Jesus Lewis", amount: "$3.45" },
+      { title: "Johnny Marr", amount: "$2.56" },
+    ],
+  },
+  {
+    label: "Total Points",
+    items: [
+      { title: "Nathaniel Fitzgerald", amount: "$3.45" },
+      { title: "Lawrence Fullter Fitzgerald", amount: "$3.45" },
+      { title: "Jacob Mullins", amount: "$3.45" },
+    ],
+  },
+  {
+    label: "Total Points",
+    items: [
+      { title: "Nathaniel Fitzgerald", amount: "$3.45" },
+      { title: "Lawrence Fullter Fitzgerald", amount: "$3.45" },
+    ],
+  }
+]
 
 const styles = StyleSheet.create({
   container: {
@@ -49,7 +50,10 @@ const Accordion = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Markets</Text>
-      <ListItem title={'Hello World'} amount={200}></ListItem>
+      {mockList.map((item, index)=>(
+        <List label={item.label} items={item.items}  key={index}/>
+      ))}
+      <ListItem title={'Hello World'} amount={200} ></ListItem>
     </SafeAreaView>
   );
 };
